@@ -27,10 +27,11 @@ def on_release(key):
     if(key == keyboard.Key.up):
         up = 0
     if(key == keyboard.Key.down):
-        down = 0                
+        down = 0
 
 def kb_state():
     return [left, right, up, down]
 
-listener = keyboard.Listener(on_press=on_press, on_release=on_release)
-listener.start()
+def start_listener():
+    listener = keyboard.Listener(on_press=on_press, on_release=on_release)
+    listener.start()

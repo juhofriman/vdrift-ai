@@ -7,6 +7,7 @@ import mss
 import numpy as np
 import keypress as kb
 import os
+import checkeredflag as cf
 
 file_name = 'data/training_data_raw.npy'
 
@@ -17,6 +18,9 @@ else:
     print('File does not exists')
     training_data = []
 
+cf.countdown(5)
+# Comment out if cv2.imshow is used for testing
+kb.start_listener();
 
 with mss.mss() as sct:
     # Part of the screen to capture
@@ -27,15 +31,14 @@ with mss.mss() as sct:
 
         # Get raw pixels from the screen, save it to a Numpy array
 
-        img = np.array(sct.grab(monitor))
+        img = cv2.cvtColor(np.array(sct.grab(monitor)), cv2.COLOR_BGR2GRAY)
         scale_percent = 20 # percent of original size
         width = int(img.shape[1] * scale_percent / 100)
         height = int(img.shape[0] * scale_percent / 100)
         dim = (width, height)
         # resize image
-        resized = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
+        resized = cv2.resize(img, dim)
         # cv2.imshow('OpenCV/Numpy edges', resized)
-        # print(kb.kb_state())
 
         print('fps: {0}'.format(1 / (time.time()-last_time)))
 
