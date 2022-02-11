@@ -11,7 +11,7 @@ numpy==1.17.0
 opencv-python==4.1.0.25
 pandas==0.25.0
 Pillow==6.1.0
-protobuf==3.9.0
+protobuf==3.15.0
 pynput==1.4.2
 pyobjc-core==5.2
 pyobjc-framework-Cocoa==5.2
